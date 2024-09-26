@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import DeporteCard from "../deporteCard/deporteCard";
+import "./homeGrid.css";
+import { Link } from "react-router-dom";
 
 function HomeGrid() {
 	const [cyclingData, setCyclingData] = useState([]);
@@ -8,6 +10,9 @@ function HomeGrid() {
 	const [swimmingData, setSwimmingData] = useState([]);
 
 	useEffect(() => {
+		setCyclingData([]);
+		setRunningData([]);
+		setSwimmingData([]);
 		for (let i = 0; i < 10; i++) {
 			setCyclingData((cd) => {
 				cd.push(
@@ -43,19 +48,29 @@ function HomeGrid() {
 		<Row>
 			<Col>
 				<h1>Cycling</h1>
-				{cyclingData.map((_, id) => ({ _ }))}
+
+				<div className="deporteGrid">
+					{cyclingData.map((_, id) => (
+						<Link to={`/deportes/${_}`}>{_}</Link>
+					))}
+				</div>
 			</Col>
-			<Col>
+			<Col className="deporteGrid">
 				<h1>Running</h1>
-				{runningData.map((_, id) => (
-					<>{_}</>
-				))}
+				<div className="deporteGrid">
+					{runningData.map((_, id) => (
+						<Link to={`/deportes/${_}}`}>{_}</Link>
+					))}
+				</div>
 			</Col>
-			<Col>
+			<Col className="deporteGrid">
 				<h1>Swimming</h1>
-				{swimmingData.map((_, id) => (
-					<>{_}</>
-				))}
+
+				<div className="deporteGrid">
+					{swimmingData.map((_, id) => (
+						<Link to={`/deportes/${_}`}>{_}</Link>
+					))}
+				</div>
 			</Col>
 		</Row>
 	);
