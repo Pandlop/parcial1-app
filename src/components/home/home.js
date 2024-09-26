@@ -17,13 +17,13 @@ function Home() {
 	return (
 		<>
 			<HomeGrid />
-			{/* <UserData
+			<UserData
 				nombre={user.nombre}
 				tiempo_correr={user.tiempo_correr}
 				tiempo_nadar={user.tiempo_nadar}
 				tiempo_cicla={user.tiempo_cicla}
 				imagen_perfil={user.imagen_perfil}
-			/> */}
+			/>
 		</>
 	);
 }

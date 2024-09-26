@@ -51,7 +51,7 @@ function HomeGrid() {
 
 				<div className="deporteGrid">
 					{cyclingData.map((_, id) => (
-						<Link to={`/deportes/${_}`}>{_}</Link>
+						<Link to={`/deportes/:${_}`}>{_}</Link>
 					))}
 				</div>
 			</Col>
@@ -59,7 +59,7 @@ function HomeGrid() {
 				<h1>Running</h1>
 				<div className="deporteGrid">
 					{runningData.map((_, id) => (
-						<Link to={`/deportes/${_}}`}>{_}</Link>
+						<Link to={`/deportes/:${_}}`}>{_}</Link>
 					))}
 				</div>
 			</Col>
@@ -68,7 +68,7 @@ function HomeGrid() {
 
 				<div className="deporteGrid">
 					{swimmingData.map((_, id) => (
-						<Link to={`/deportes/${_}`}>{_}</Link>
+						<Link to={`/deportes:${_}`}>{_}</Link>
 					))}
 				</div>
 			</Col>
