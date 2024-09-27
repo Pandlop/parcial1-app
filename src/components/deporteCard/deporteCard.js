@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
-function DeporteCard({ title, image }) {
-	const [dist, setDist] = useState(0);
-	const [time, setTime] = useState(0);
-	const [loc, setLoc] = useState(0);
+function DeporteCard({ title, dist, time, loc, image, style }) {
+	const { t, i18n } = useTranslation();
 
 	return (
-		<Card style={{ width: "18rem" }}>
-			<Card.Img variant="top" src="holder.js/100px180" />
+		<Card style={style} className="deporte">
 			<Card.Body>
 				<Card.Title>{title}</Card.Title>
-				<p>Recorrido alrededor de la bahia de {loc}</p>
+				<p>
+					{t("Tour around the bay of")} {loc}
+				</p>
 				<div>
 					<span>
-						{dist} - {time}
+						{dist}k - {time}:00
 					</span>
 				</div>
 			</Card.Body>

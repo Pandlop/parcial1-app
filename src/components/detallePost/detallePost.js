@@ -1,21 +1,22 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./detallePost.css";
 import { Button, Modal } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import DeporteCard from "../deporteCard/deporteCard";
+import { useTranslation } from "react-i18next";
 
-function DetallePost() {
-	let { object } = useParams();
-	let image =
-		"https://cdn-5f4f6e14c1ac180394b738c9.closte.com/wp-content/uploads/2018/03/01-1170x635.jpg";
+function DetallePost({ style }) {
+	const location = useLocation();
+	const card = location.state?._;
+	const { t, i18n } = useTranslation();
 
 	return (
 		<div
-			className="modal show"
 			style={{ display: "block", position: "initial" }}
+			className="modal show"
 		>
 			<Modal.Dialog>
-				<Modal.Body>
-					<img src={image} alt="deporte" width={400} />
+				<Modal.Body className="modal-card" style={{ height: "300px" }}>
+					<DeporteCard style={style} {...card} />
 				</Modal.Body>
 
 				<Modal.Footer>

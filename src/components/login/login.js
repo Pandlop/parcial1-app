@@ -1,18 +1,20 @@
 import { Button, Card, Form, Row, Col } from "react-bootstrap";
 import "./login.css";
 import { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
 
 function Login() {
 	const [validated, setValidated] = useState(false);
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	const [data, setData] = useState({});
+	const { t, i18n } = useTranslation();
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
 		if (event.target[1].value.length < 8) {
-			alert("La contraseña debe tener 8 o más caracteres");
+			alert(t("La contraseña debe tener 8 o más caracteres"));
 			return;
 		}
 
@@ -34,26 +36,26 @@ function Login() {
 				<Form noValidate validated={validated} onSubmit={handleSubmit}>
 					<Row className="mb-3">
 						<Form.Group as={Col} md="12" controlId="validationCustom01">
-							<Form.Label>Email</Form.Label>
+							<Form.Label>{t("Email")}</Form.Label>
+
 							<Form.Control
 								required
 								type="email"
 								placeholder={email}
 								defaultValue=""
 							/>
-							<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
 						</Form.Group>
 					</Row>
 					<Row className="mb-3">
 						<Form.Group as={Col} md="12" controlId="validationCustom02">
-							<Form.Label>Password</Form.Label>
+							<Form.Label>{t("Password")}</Form.Label>
+
 							<Form.Control
 								required
 								type="password"
 								placeholder={password}
 								defaultValue=""
 							/>
-							<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
 						</Form.Group>
 					</Row>
 					<Button type="submit" formAction="#">
