@@ -18,11 +18,16 @@ function Home() {
 		<>
 			<HomeGrid />
 			<UserData
-				nombre={user.nombre}
-				tiempo_correr={user.tiempo_correr}
-				tiempo_nadar={user.tiempo_nadar}
-				tiempo_cicla={user.tiempo_cicla}
-				imagen_perfil={user.imagen_perfil}
+				// nombre={user.nombre}
+				// tiempo_correr={user.tiempo_correr}
+				// tiempo_nadar={user.tiempo_nadar}
+				// tiempo_cicla={user.tiempo_cicla}
+				// imagen_perfil={user.imagen_perfil}
+				nombre="Juan Lopez"
+				tiempo_correr="2"
+				tiempo_nadar="3"
+				tiempo_cicla="1"
+				imagen_perfil=""
 			/>
 		</>
 	);
