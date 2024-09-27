@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Modal, Row } from "react-bootstrap";
 import DeporteCard from "../deporteCard/deporteCard";
 import "./homeGrid.css";
 import { Link } from "react-router-dom";
@@ -26,6 +26,8 @@ function HomeGrid() {
 		color: "white",
 		fontWeight: "bold",
 	};
+	const [modalShow, setModalShow] = useState(false);
+	const [selectedCard, setSelectedCard] = useState(null);
 
 	const style_run = {
 		...style,
@@ -47,6 +49,11 @@ function HomeGrid() {
 		'https://www.health.com/thmb/Yv4HuoQyNbHNNxgtOTm63zqxurQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Health-Swimming-080c78802f384a4687df5a3b13d5611e-3719a8e40a3c4c43a63a4d795e47c505.jpg'
 	)`,
 	};
+
+	function handleclick(card) {
+		setSelectedCard(card);
+		setModalShow(true);
+	}
 
 	useEffect(() => {
 		async function handleDetails() {
@@ -104,55 +111,58 @@ function HomeGrid() {
 	}, [t]);
 
 	return (
-		<Row>
-			<Col className="deporteGrid">
-				<h1>{t("Cycling")}</h1>
+		<>
+			<Row className="grid-container">
+				<Col className="deporteGrid">
+					<h1>{t("Cycling")}</h1>
 
-				<div className="deporteGrid">
-					{cyclingData.map((_, id) => (
-						<Link
-							to={`/deportes/detail`}
-							state={{ _ }}
-							key={id}
-							style={{ textDecoration: "none" }}
-						>
-							<DeporteCard {..._} />
-						</Link>
-					))}
-				</div>
-			</Col>
-			<Col className="deporteGrid">
-				<h1>{t("Running")}</h1>
-				<div className="deporteGrid">
-					{runningData.map((_, id) => (
-						<Link
-							to={`/deportes/detail`}
-							state={{ _ }}
-							key={id}
-							style={{ textDecoration: "none" }}
-						>
-							<DeporteCard {..._} />
-						</Link>
-					))}
-				</div>
-			</Col>
-			<Col className="deporteGrid">
-				<h1>{t("Swimming")}</h1>
+					<div className="deporteGrid">
+						{cyclingData.map((_, id) => (
+							<div onClick={() => handleclick(_)}>
+								<DeporteCard {..._} />
+							</div>
+						))}
+					</div>
+				</Col>
+				<Col className="deporteGrid">
+					<h1>{t("Running")}</h1>
+					<div className="deporteGrid">
+						{runningData.map((_, id) => (
+							<div onClick={() => handleclick(_)}>
+								<DeporteCard {..._} />
+							</div>
+						))}
+					</div>
+				</Col>
+				<Col className="deporteGrid">
+					<h1>{t("Swimming")}</h1>
 
-				<div className="deporteGrid">
-					{swimmingData.map((_, id) => (
-						<Link
-							to={`/deportes/detail`}
-							state={{ _ }}
-							key={id}
-							style={{ textDecoration: "none" }}
-						>
-							<DeporteCard {..._} />
-						</Link>
-					))}
-				</div>
-			</Col>
-		</Row>
+					<div className="deporteGrid">
+						{swimmingData.map((_, id) => (
+							<div onClick={() => handleclick(_)}>
+								<DeporteCard {..._} />
+							</div>
+						))}
+					</div>
+				</Col>
+			</Row>
+			<Modal show={modalShow} onHide={() => setModalShow(false)}>
+				<Modal.Body>
+					<DeporteCard {...selectedCard} />
+				</Modal.Body>
+				<Modal.Footer>
+					<Button
+						variant="secondary"
+						onClick={() => {
+							setSelectedCard(null);
+							setModalShow(false);
+						}}
+					>
+						Close
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		</>
 	);
 }
 export default HomeGrid;
