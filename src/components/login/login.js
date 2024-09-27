@@ -9,24 +9,22 @@ function Login() {
 	const [data, setData] = useState({});
 
 	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		if (event.target[1].value.length < 8) {
+			alert("La contraseña debe tener 8 o más caracteres");
+			return;
+		}
+
 		const form = event.currentTarget;
 		if (form.checkValidity() === false) {
-			event.preventDefault();
 			event.stopPropagation();
-		} else if (password.length) {
-			alert("La con");
 		} else {
-			const userEmail = event.target[0].value;
-			const userPassword = event.target[1].value;
-			alert(`Email: ${email},\nPassword: ${password}`);
-			setData({
-				Email: userEmail,
-				Password: password,
-			});
+			setEmail(event.target[0].value);
+			setPassword(event.target[1].value);
+			setValidated(true);
+			setValidated(true);
 		}
-		setEmail(event.target[0].value);
-		setPassword(event.target[1].value);
-		setValidated(true);
 	};
 
 	return (
