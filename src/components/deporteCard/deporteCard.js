@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 function DeporteCard({ title, dist, time, loc, image, style }) {
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 
 	return (
 		<Card style={style} className="deporte">

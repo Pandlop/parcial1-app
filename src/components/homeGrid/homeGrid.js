@@ -2,21 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import DeporteCard from "../deporteCard/deporteCard";
 import "./homeGrid.css";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 function HomeGrid() {
 	const [cyclingData, setCyclingData] = useState([]);
 	const [runningData, setRunningData] = useState([]);
 	const [swimmingData, setSwimmingData] = useState([]);
-	const [run_values, setRunValues] = useState({ dist: 0, time: 0, loc: "" });
-	const [swim_values, setSwimValues] = useState({ dist: 0, time: 0, loc: "" });
-	const [cycle_values, setCycleValues] = useState({
-		dist: 0,
-		time: 0,
-		loc: "",
-	});
-	const { t } = useTranslation();
+	const [modalShow, setModalShow] = useState(false);
+	const [selectedCard, setSelectedCard] = useState(null);
+
+	const { t, i18n } = useTranslation();
 	const style = {
 		width: "100%",
 		height: "100%",
@@ -26,8 +21,6 @@ function HomeGrid() {
 		color: "white",
 		fontWeight: "bold",
 	};
-	const [modalShow, setModalShow] = useState(false);
-	const [selectedCard, setSelectedCard] = useState(null);
 
 	const style_run = {
 		...style,
@@ -62,7 +55,7 @@ function HomeGrid() {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					return { dist: 0, time: 0, loc: "200 apis", style: {} };
+					return { dist: data.dist, time: data.time, loc: data.loc, style: {} };
 				})
 				.catch((err) => {
 					return { dist: 0, time: 0, loc: "error", style: {} };

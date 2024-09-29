@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import HomeGrid from "../homeGrid/homeGrid";
 import UserData from "../userData/userData";
 import "./home.css";
+import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 function Home() {
 	const [user, setUser] = useState({});
+	const { i18n } = useTranslation();
 
 	useEffect(() => {
 		fetch("https://my.api.mockaroo.com/parcial1.json?key=e80d2b00", {
@@ -16,6 +19,15 @@ function Home() {
 	}, []);
 	return (
 		<>
+			<div className="inter">
+				<h1>Idioma:</h1>
+				<Button variant="primary" onClick={() => i18n.changeLanguage("en")}>
+					English
+				</Button>
+				<Button variant="secondary" onClick={() => i18n.changeLanguage("es")}>
+					Español
+				</Button>
+			</div>
 			<HomeGrid />
 			<UserData
 				// nombre={user.nombre}

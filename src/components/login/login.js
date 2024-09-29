@@ -25,45 +25,63 @@ function Login() {
 			setEmail(event.target[0].value);
 			setPassword(event.target[1].value);
 			setValidated(true);
-			setValidated(true);
 		}
 	};
 
 	return (
-		<Card style={{ width: "18rem" }}>
-			<Card.Body>
-				<Card.Title>Login</Card.Title>
-				<Form noValidate validated={validated} onSubmit={handleSubmit}>
-					<Row className="mb-3">
-						<Form.Group as={Col} md="12" controlId="validationCustom01">
-							<Form.Label>{t("Email")}</Form.Label>
+		<>
+			<div className="inter">
+				<h1>Idioma:</h1>
+				<Button variant="primary" onClick={() => i18n.changeLanguage("en")}>
+					English
+				</Button>
+				<Button variant="secondary" onClick={() => i18n.changeLanguage("es")}>
+					Español
+				</Button>
+			</div>
+			<div className="login-card">
+				<Card style={{ width: "18rem" }}>
+					<Card.Body>
+						<Card.Title>Login</Card.Title>
+						<Form noValidate validated={validated} onSubmit={handleSubmit}>
+							<Row className="mb-3">
+								<Form.Group as={Col} md="12" controlId="validationCustom01">
+									<Form.Label>{t("Email")}</Form.Label>
 
-							<Form.Control
-								required
-								type="email"
-								placeholder={email}
-								defaultValue=""
-							/>
-						</Form.Group>
-					</Row>
-					<Row className="mb-3">
-						<Form.Group as={Col} md="12" controlId="validationCustom02">
-							<Form.Label>{t("Password")}</Form.Label>
+									<Form.Control
+										required
+										type="text"
+										placeholder={email}
+										defaultValue=""
+									/>
+									<Form.Control.Feedback type="invalid">
+										{t("Por favor ingresa un correo válido.")}
+									</Form.Control.Feedback>
+								</Form.Group>
+							</Row>
+							<Row className="mb-3">
+								<Form.Group as={Col} md="12" controlId="validationCustom02">
+									<Form.Label>{t("Password")}</Form.Label>
 
-							<Form.Control
-								required
-								type="password"
-								placeholder={password}
-								defaultValue=""
-							/>
-						</Form.Group>
-					</Row>
-					<Button type="submit" formAction="#">
-						Log in
-					</Button>
-				</Form>
-			</Card.Body>
-		</Card>
+									<Form.Control
+										required
+										type="password"
+										placeholder={password}
+										defaultValue=""
+									/>
+									<Form.Control.Feedback type="invalid">
+										{t("La contraseña debe tener 8 o más caracteres.")}
+									</Form.Control.Feedback>
+								</Form.Group>
+							</Row>
+							<Button type="submit" formAction="#">
+								Log in
+							</Button>
+						</Form>
+					</Card.Body>
+				</Card>
+			</div>
+		</>
 	);
 }
 export default Login;
